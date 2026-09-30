@@ -1,0 +1,30 @@
+The direction I recommend testing
+Keep Tucker, but change its role.
+Stop relying on Tucker to discover and identify minerals simultaneously. First establish that your spectral library and unmixing algorithm can identify known minerals. Then introduce incremental dimensionality reduction, keeping Tucker as an experimental method for efficient processing rather than assuming its factors represent minerals.
+This preserves the central research idea while giving you a much clearer route to a working demonstration.
+
+
+2.1 The mathematical representation and the physical quantity are different
+
+A mathematical factor explains variation in the data. A mineral endmember represents the measured reflectance of a material. They can sometimes be related, but that relationship has to be established rather than assumed.
+The same underlying mineral may exhibit several spectral patterns because of grain size, contamination or illumination. A decomposition could use two components to describe one mineral's variability, or one component to describe several correlated minerals. Endmember variability is an established complication in hyperspectral unmixing. 
+
+
+
+
+2.2 Your reference library might also be contributing to the poor matches
+
+Your two datasets come from different measurement systems. The USGS library contains laboratory and other reference measurements from several spectrometer types, while Fasnacht used a SPECIM SWIR imaging camera. Even after wavelength resampling, differences in calibration, spectral resolution and measurement conditions can affect matching. 
+
+Your library-builder code explicitly assumes that the HDF5 data is calibrated reflectance and warns that it cannot verify this. It also estimates the sensor's full width at half maximum (FWHM) when the actual values are unavailable. build_sam_library.py
+
+
+Before attributing every failure to Tucker, you therefore need to answer one question: can a known pure-mineral spectrum from your dataset be matched to the correct reference without Tucker at all?
+That experiment would isolate the library and calibration problem from the decomposition problem.
+
+
+Measure input time, preprocessing time, dimensionality-reduction time, unmixing time, peak memory and latency until the first useful output. Your operational target is for sustained processing throughput to keep pace with the assumed arrival rate of new sensor data.
+
+
+
+Both the ML classifier and the unmixing solver should accept an array of valid pixel spectra with shape (number_of_pixels, number_of_bands) and the same wavelength ordering.

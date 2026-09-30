@@ -1,17 +1,21 @@
-# Python environment
-.venv/
+# Cuprite dataset - stored locally, not in Git
+hsi.npy
+abundances.npy
+
+# Generated Tucker representation
+reduced_spectra_Z.npy
+
+# Generated experiment outputs
+cuprite_ml_reduced_out/
+baseline_vs_ml_out/
+
+# Python
 __pycache__/
+*.pyc
+
+# Virtual environments
+.venv/
+venv/
 
 # Large downloaded datasets
 Phase_1/data/
-
-# Generated logs
-Phase_1/download_log.txt
-Phase_1/extract_log.txt
-
-# Incomplete downloads
-*.part
-
-Notes.txt
-
-hsi.npy
