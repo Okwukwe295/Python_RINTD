@@ -41,7 +41,8 @@ if not hasattr(sp, "random"):
     sp.random = np.random
 
 import importlib.util
-spec = importlib.util.spec_from_file_location("unmixing", "unmixing.py")
+SCRIPT_DIR = Path(__file__).resolve().parent
+spec = importlib.util.spec_from_file_location("unmixing", SCRIPT_DIR / "unmixing.py")
 um = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(um)
 sunsal = um.sunsal
@@ -51,7 +52,7 @@ EPS = 1e-12
 
 
 # ======================================================================
-SYNTH_DIR   = r"C:\Users\Marcus\Desktop\TuckerDecomp"
+SYNTH_DIR   = Path(__file__).resolve().parent
 RESULTS_CSV = "conveyor_results.csv"
 SUMMARY_PNG = "conveyor_summary.png"
 
@@ -353,6 +354,8 @@ def run_conveyor(args):
             print(f"  scene {t:5d}: SAD={sad_mean:.2f}° RMSE={rmse:.4f} "
                   f"recon={recon:.4f} | NTD {t_ntd*1000:.1f}ms")
 
+    np.save(args.basis_out, U[2])
+    print(f"[basis] saved final spectral factor U3 {U[2].shape} -> {args.basis_out}")
     return rows
 
 
@@ -375,6 +378,7 @@ def main():
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--results_csv", default=RESULTS_CSV)
     ap.add_argument("--summary_png", default=SUMMARY_PNG)
+    ap.add_argument("--basis_out", default="spectral_basis_U3.npy")
     args = ap.parse_args()
 
     t_start = time.perf_counter()

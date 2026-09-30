@@ -1,0 +1,29 @@
+name: cuprite_synthetic
+description: >
+  Synthetic dataset that uses the same endmembers as 
+  those in the cuprite dataset.  The endmembers spectral 
+  signatures where acquired from the USGS library.  This 
+  synthetic dataset allows unmixing models that require pixel 
+  level abundances to be trained.  The trained models can
+  be subsequently used to analyze the cuprite dataset.
+  Note that cuprite dataset does not contain pixel-level
+  abundances; therefore, it cannot be used to train models
+  that require this information.  
+abundances: abundances.npy
+class: Synthetic
+endmembers: endmembers.npy
+hsi: hsi.npy
+materials:
+- '#1 Alunite'
+- '#2 Andradite'
+- '#3 Buddingtonite'
+- '#4 Dumortierite'
+- '#5 Kaolinite_1'
+- '#6 Kaolinite_2'
+- '#7 Muscovite'
+- '#8 Montmorillonite'
+- '#9 Nontronite'
+- '#10 Pyrope'
+- '#11 Sphene'
+- '#12 Chalcedony'
+name: cuprite_synthetic

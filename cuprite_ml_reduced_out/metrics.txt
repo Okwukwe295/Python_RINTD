@@ -1,0 +1,24 @@
+HSI shape: (307, 307, 188)
+U3 shape: (188, 14)
+Reduced dimensions: 188 -> 14
+Train seconds: 79.205
+Held-out abundance RMSE: 0.015499
+Held-out reconstruction RMSE: 0.026155
+Mean endmember SAD (deg): 2.392868
+Max endmember SAD (deg): 7.451428
+Whole-scene inference seconds: 0.554625
+Pixels per second: 169932.9
+
+Per-endmember SAD and predicted scene-average abundance:
+01 Alunite            SAD=  3.064 deg   avg_abundance=0.13317
+02 Andradite          SAD=  3.966 deg   avg_abundance=0.04274
+03 Buddingtonite      SAD=  0.355 deg   avg_abundance=0.07102
+04 Dumortierite       SAD=  2.365 deg   avg_abundance=0.07742
+05 Kaolinite_1        SAD=  2.811 deg   avg_abundance=0.08222
+06 Kaolinite_2        SAD=  0.562 deg   avg_abundance=0.09462
+07 Muscovite          SAD=  0.746 deg   avg_abundance=0.09221
+08 Montmorillonite    SAD=  1.075 deg   avg_abundance=0.05419
+09 Nontronite         SAD=  3.951 deg   avg_abundance=0.05691
+10 Pyrope             SAD=  1.769 deg   avg_abundance=0.09436
+11 Sphene             SAD=  7.451 deg   avg_abundance=0.06216
+12 Chalcedony         SAD=  0.598 deg   avg_abundance=0.13898
