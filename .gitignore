@@ -19,3 +19,6 @@ venv/
 
 # Large downloaded datasets
 Phase_1/data/
+
+baseline_vs_ml_out/
+cuprite_ml_reduced_out/
