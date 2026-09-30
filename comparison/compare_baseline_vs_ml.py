@@ -106,14 +106,15 @@ def parse_ml_metrics(metrics_path: Path):
 
 
 def main():
+    ROOT = Path(__file__).resolve().parents[1]
     ap = argparse.ArgumentParser(
         description="Compare Marcus-style Tucker->VCA->FCLS against Tucker->ML on Cuprite synthetic."
     )
-    ap.add_argument("--data-dir", default=".")
-    ap.add_argument("--basis", default="spectral_basis_U3.npy")
-    ap.add_argument("--unmixing", default="unmixing.py")
-    ap.add_argument("--ml-dir", default="cuprite_ml_reduced_out")
-    ap.add_argument("--out-dir", default="baseline_vs_ml_out")
+    ap.add_argument("--data-dir", default=str(ROOT / "data"))
+    ap.add_argument("--basis", default=str(ROOT / "tucker" / "spectral_basis_U3.npy"))
+    ap.add_argument( "--unmixing", default=str(ROOT / "baseline" / "unmixing.py"))
+    ap.add_argument("--ml-dir", default=str(ROOT / "results" / "ml"))
+    ap.add_argument("--out-dir", default=str(ROOT / "results" / "comparison"))
     ap.add_argument("--vca-seed", type=int, default=0)
     ap.add_argument("--fcls-iters", type=int, default=150)
     args = ap.parse_args()

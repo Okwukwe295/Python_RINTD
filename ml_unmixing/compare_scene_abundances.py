@@ -14,8 +14,9 @@ MATERIALS = [
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--data-dir", default=".")
-    ap.add_argument("--pred-dir", default="cuprite_ml_reduced_out")
+    ROOT = Path(__file__).resolve().parents[1]
+    ap.add_argument("--data-dir", default=str(ROOT / "data"))
+    ap.add_argument("--pred-dir", default=str(ROOT / "results" / "ml"))
     args = ap.parse_args()
 
     data_dir = Path(args.data_dir)

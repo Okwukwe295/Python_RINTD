@@ -42,7 +42,7 @@ if not hasattr(sp, "random"):
 
 import importlib.util
 SCRIPT_DIR = Path(__file__).resolve().parent
-spec = importlib.util.spec_from_file_location("unmixing", SCRIPT_DIR / "unmixing.py")
+spec = importlib.util.spec_from_file_location("unmixing", BASELINE_DIR / "unmixing.py")
 um = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(um)
 sunsal = um.sunsal
@@ -52,10 +52,15 @@ EPS = 1e-12
 
 
 # ======================================================================
-SYNTH_DIR   = Path(__file__).resolve().parent
-RESULTS_CSV = "conveyor_results.csv"
-SUMMARY_PNG = "conveyor_summary.png"
+ROOT = Path(__file__).resolve().parents[1]
+BASELINE_DIR = Path(__file__).resolve().parent
 
+DATA_DIR = ROOT / "data"
+BASELINE_RESULTS_DIR = ROOT / "results" / "baseline"
+SYNTH_DIR = DATA_DIR
+BASELINE_RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+RESULTS_CSV = BASELINE_RESULTS_DIR / "conveyor_results.csv"
+SUMMARY_PNG = BASELINE_RESULTS_DIR / "conveyor_summary.png"
 BURNIN_SCENES = 5
 HALS_ITERS    = 30
 K_INNER       = 10

@@ -8,7 +8,13 @@ tl.set_backend("numpy")
 # ---------------------------------------------------------
 # SETTINGS
 # ---------------------------------------------------------
-DATA_DIR = Path(".")
+ROOT = Path(__file__).resolve().parents[1]
+
+DATA_DIR = ROOT / "data"
+TUCKER_DIR = ROOT / "tucker"
+
+TUCKER_DIR.mkdir(parents=True, exist_ok=True)
+
 K = 12
 RANK_OFFSET = 2
 
@@ -126,11 +132,11 @@ print(f"    Relative projection error: {projection_error:.6f}")
 # ---------------------------------------------------------
 # 6. SAVE OUTPUTS
 # ---------------------------------------------------------
-np.save("spectral_basis_U3.npy", U3)
+np.save(TUCKER_DIR / "spectral_basis_U3.npy", U3)
 
 # Save in pixel-major format for ML:
 # N x 14 rather than 14 x N
-np.save("reduced_spectra_Z.npy", Z.T)
+np.save(TUCKER_DIR / "reduced_spectra_Z.npy", Z.T)
 
 print("\n[8] Saved")
 print("    spectral_basis_U3.npy :", U3.shape)

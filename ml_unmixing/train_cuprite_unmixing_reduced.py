@@ -54,13 +54,17 @@ def reduce_with_u3(X: np.ndarray, U3: np.ndarray) -> np.ndarray:
     U3_pinv = np.linalg.pinv(U3)       # R x B
     return X @ U3_pinv.T               # N x R
 
+ROOT = Path(__file__).resolve().parents[1]
+
+DEFAULT_DATA_DIR = ROOT / "data"
+DEFAULT_BASIS = ROOT / "tucker" / "spectral_basis_U3.npy"
+DEFAULT_OUT_DIR = ROOT / "results" / "ml"
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--data-dir", default=".")
-    ap.add_argument("--basis", required=True,
-                    help="Marcus spectral factor U3 saved as .npy, shape (B, R), e.g. (188,14)")
-    ap.add_argument("--out-dir", default="cuprite_ml_reduced_out")
+    ap.add_argument("--data-dir", default=DEFAULT_DATA_DIR)
+    ap.add_argument("--basis", default=str(DEFAULT_BASIS), help="Tucker spectral factor U3")
+    ap.add_argument("--out-dir", default=str(DEFAULT_OUT_DIR))
     ap.add_argument("--epochs", type=int, default=40)
     ap.add_argument("--batch-size", type=int, default=4096)
     ap.add_argument("--lr", type=float, default=2e-3)
