@@ -41,6 +41,8 @@ if not hasattr(sp, "random"):
     sp.random = np.random
 
 import importlib.util
+ROOT = Path(__file__).resolve().parents[1]
+BASELINE_DIR = Path(__file__).resolve().parent
 SCRIPT_DIR = Path(__file__).resolve().parent
 spec = importlib.util.spec_from_file_location("unmixing", BASELINE_DIR / "unmixing.py")
 um = importlib.util.module_from_spec(spec)
@@ -52,15 +54,13 @@ EPS = 1e-12
 
 
 # ======================================================================
-ROOT = Path(__file__).resolve().parents[1]
-BASELINE_DIR = Path(__file__).resolve().parent
 
 DATA_DIR = ROOT / "data"
 BASELINE_RESULTS_DIR = ROOT / "results" / "baseline"
 SYNTH_DIR = DATA_DIR
 BASELINE_RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 RESULTS_CSV = BASELINE_RESULTS_DIR / "conveyor_results.csv"
-SUMMARY_PNG = BASELINE_RESULTS_DIR / "conveyor_summary.png"
+SUMMARY_PNG = BASELINE_RESULTS_DIR / "sp_conveyor_summary.png"
 BURNIN_SCENES = 5
 HALS_ITERS    = 30
 K_INNER       = 10
@@ -82,7 +82,7 @@ DRIFT_COUNT = 3
 # RI-NTD update (recursive approach)
 # ----------------------------------------------------------------------
 def recursive_update(X_n, U, G, P, Q, start, nonneg=True,
-                      k_inner=10, gamma=1e-3, lam=1,
+                      k_inner=10, gamma=1e-3, lam=0.85,
                       core_mu_iters=CORE_MU_ITERS):
     """
     Incremental NTD (Zdunek & Fonał 2022, recursive approach).
@@ -250,7 +250,7 @@ def run_conveyor(args):
     active = list(rng.choice(K_pool, size=K, replace=False))
     E_true = E_pool[:, active].copy()
 
-    W_fix = args.scene_min + 8
+    W_fix = int(rng.integers(args.scene_min, args.scene_max + 1))
 
     # ---- burn-in ----
     print(f"[conveyor] burn-in {args.burnin} scenes, K={K}, ranks={ranks}")
@@ -377,7 +377,7 @@ def main():
     ap.add_argument("--snr_max", type=float, default=SNR_DB_MAX)
     ap.add_argument("--alpha_min", type=float, default=DIRICHLET_ALPHA_MIN)
     ap.add_argument("--alpha_max", type=float, default=DIRICHLET_ALPHA_MAX)
-    ap.add_argument("--lam", type=float, default=1.0)
+    ap.add_argument("--lam", type=float, default=0.85)
     ap.add_argument("--drift_scene", type=int, default=None)
     ap.add_argument("--drift_count", type=int, default=DRIFT_COUNT)
     ap.add_argument("--seed", type=int, default=42)

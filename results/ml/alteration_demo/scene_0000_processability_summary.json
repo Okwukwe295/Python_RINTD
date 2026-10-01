@@ -1,0 +1,29 @@
+{
+  "scene": 0,
+  "predicted_processability": "Difficult / high processing risk",
+  "process_risk_score_1_to_3": 2.904912348295126,
+  "prediction_confidence": "MODERATE",
+  "classified_scene_fraction": 0.9955887993862678,
+  "main_alteration_driver": "Argillic / Smectitic",
+  "driver_reason": "Smectite/kaolinite-rich material is the strongest clay-related processing risk in the current mineral set.",
+  "risk_profile_1_to_3": {
+    "flotation": 2.8875746726989746,
+    "rheology": 2.8723175525665283,
+    "dewatering": 2.833789348602295,
+    "comminution": 1.1474860906600952,
+    "leaching": 1.9049123525619507
+  },
+  "processing_considerations": [
+    "Evaluate clay/rheology management and desliming before downstream separation.",
+    "Expect flotation sensitivity; evaluate slime coating, entrainment and reagent conditions.",
+    "Plan thickening/filtration testwork for fine or clay-rich material."
+  ],
+  "alteration_coverage_percent": {
+    "Advanced Argillic": 3.8358266206367473,
+    "Argillic / Smectitic": 86.25623321825853,
+    "Phyllic / Sericitic": 1.8642117376294591,
+    "Silicic": 1.7261219792865363,
+    "Early Hydrothermal": 4.3574990410433445,
+    "Skarn / Calc-silicate": 1.518987341772152
+  }
+}
