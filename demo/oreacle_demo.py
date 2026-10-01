@@ -1,6 +1,4 @@
-from pathlib import Path
-
-code = r'''#!/usr/bin/env python3
+#!/usr/bin/env python3
 """
 Oreacle - Interactive 50-scene conveyor demo
 =============================================
@@ -1480,9 +1478,4 @@ if len(st.session_state.history) >= 2:
     fig.tight_layout()
     st.pyplot(fig)
     plt.close(fig)
-'''
-
-out = Path("/mnt/data/oreacle_demo.py")
-out.write_text(code, encoding="utf-8")
-print(out)
-print("lines:", len(code.splitlines()))
+# Hope and pray
